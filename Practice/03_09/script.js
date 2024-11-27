@@ -23,4 +23,24 @@ const backpack = {
     this.strapLength.left = lengthLeft;
     this.strapLength.right = lengthRight;
   },
+  setName: function (newName) {
+    this.name = newName;
+  },
+  setVolume: function (newVolume) {
+    this.volume = newVolume;
+  },
+  setColor: function (newColor) {
+    this.color = newColor;
+  },
+  setPocketNum: function (newPocketNum) {
+    this.pocketNum = newPocketNum;
+  },
 };
+
+backpack.toggleLid(true);
+backpack.newStrapLength(10, 10);
+backpack.setName("Book bag");
+backpack.setVolume(20);
+backpack.setColor("black");
+backpack.setPocketNum(8);
+console.log(backpack);
