@@ -33,27 +33,46 @@ const frogpack = {
   },
 };
 
-// Baseline HTML output
-const content = `
-    <h1 class="backpack__name">${frogpack.name}</h1>
+const createBackpackArticle = (backpack) => {
+  const content = `
+    <h1 class="backpack__name">${backpack.name}</h1>
     <ul class="backpack__features">
       <li class="packprop backpack__volume">Volume:<span> ${
-        frogpack.volume
+        backpack.volume
       }l</span></li>
       <li class="packprop backpack__color">Color:<span> ${
-        frogpack.color
+        backpack.color
       }</span></li>
       <li class="packprop backpack__pockets">Number of pockets:<span> ${
-        frogpack.pocketNum
+        backpack.pocketNum
       }</span></li>
       <li class="packprop backpack__strap">Left strap length:<span> ${
-        frogpack.strapLength.left
+        backpack.strapLength.left
       } inches</span></li>
       <li class="packprop backpack__strap">Right strap length:<span> ${
-        frogpack.strapLength.right
+        backpack.strapLength.right
       } inches</span></li>
       <li class="feature backpack__lid">Lid status:<span> ${
-        frogpack.lidOpen ? "open" : "closed"
+        backpack.lidOpen ? "open" : "closed"
       }</span></li>
-    </ul>  
-`;
+    </ul>`;
+
+  const newArticle = document.createElement("article");
+  newArticle.innerHTML = content;
+  const backpackFigure = createFigure(backpack.image, backpack.name);
+  newArticle.prepend(backpackFigure);
+  return newArticle;
+};
+
+const createFigure = (src, desc) => {
+  const newFigure = document.createElement("figure");
+  const newImage = document.createElement("img");
+  const newCaption = document.createElement("figcaption");
+  newImage.setAttribute("src", src);
+  newCaption.innerText = desc;
+  newFigure.append(newImage, newCaption);
+  return newFigure;
+};
+
+const frogpackArticle = createBackpackArticle(frogpack);
+document.querySelector("main").append(frogpackArticle);
